@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  wallet:
+    image: juanluisbaptiste/raptoreum-wallet:latest
+    container_name: raptoreum-wallet
+    environment:
+      - DISPLAY=unix$DISPLAY
+      - ENABLE_WEB_VIEW=yes
+      - DEBUG=yes
+    #network_mode: host
+    ports:
+      - "10000:10000"
+    volumes:
+      - ./volumes/raptoreum-storage:/root/rtm-storage
+      - ./volumes/config:/root/.raptoreumcore
+      - /etc/localtime:/etc/localtime:ro
+      -  /tmp/.X11-unix:/tmp/.X11-unix
+
