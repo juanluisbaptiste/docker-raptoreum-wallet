@@ -1,6 +1,6 @@
 FROM juanluisbaptiste/xpra-base:latest
 MAINTAINER Juan Luis Baptiste <juan.baptiste@gmail.com>
-ENV RTM_VERSION "1.2.15.2"
+ENV RTM_VERSION "1.2.15.3"
 ENV RTM_GUI_DOWNLOAD_URL https://github.com/Raptor3um/raptoreum/releases/download/${RTM_VERSION}/raptoreum_${RTM_VERSION}_ubuntu20_64.tar.gz
 ENV DISPLAY=:100
 ENV WEB_VIEW_PORT 10000
