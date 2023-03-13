@@ -1,7 +1,7 @@
 FROM juanluisbaptiste/xpra-base:latest
 MAINTAINER Juan Luis Baptiste <juan.baptiste@gmail.com>
-ENV RTM_VERSION "1.2.15.3"
-ENV RTM_GUI_DOWNLOAD_URL https://github.com/Raptor3um/raptoreum/releases/download/${RTM_VERSION}/raptoreum_${RTM_VERSION}_ubuntu20_64.tar.gz
+ENV RTM_VERSION "1.3.17.02"
+ENV RTM_GUI_DOWNLOAD_URL https://github.com/Raptor3um/raptoreum/releases/download/${RTM_VERSION}/raptoreum-ubuntu22-${RTM_VERSION}.tar.gz
 ENV DISPLAY=:100
 ENV WEB_VIEW_PORT 10000
 ENV DEBIAN_FRONTEND noninteractive
@@ -17,13 +17,15 @@ RUN apt-get update && \
 COPY local-entrypoint.sh /
 RUN  chmod 755 /local-entrypoint.sh
 
-WORKDIR /root
-RUN  id
+USER rtm
+WORKDIR /home/rtm
 RUN mkdir rtm-gui && \
     curl -L ${RTM_GUI_DOWNLOAD_URL} -O && \
-    tar -zxf raptoreum_${RTM_VERSION}_ubuntu20_64.tar.gz -C rtm-gui && \
+    tar -zxf raptoreum-ubuntu22-${RTM_VERSION}.tar.gz -C rtm-gui && \
     ls -th && \
-    rm raptoreum_${RTM_VERSION}_ubuntu20_64.tar.gz
+    rm raptoreum-ubuntu22-${RTM_VERSION}.tar.gz
+    #mkdir -p /home/rtm/.raptoreumcore
+#COPY rtm-core.conf /home/rtm/.raptoreumcore/
 
 CMD ["/local-entrypoint.sh"]
 EXPOSE 10000
